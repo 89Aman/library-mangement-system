@@ -12,8 +12,8 @@ This project is a simple Library Management System built with Flask and MongoDB.
 ## Tech Stack
 
 - **Backend**: Flask
+- **Frontend** : TailwindCSS
 - **Database**: MongoDB (MongoDB Atlas Cloud Database)
-- **Authentication**: No authentication system included yet (can be extended)
 - **Python Libraries**:
   - `Flask`
   - `Flask-PyMongo`
