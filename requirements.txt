@@ -3,4 +3,4 @@ gunicorn
 flask-pymongo
 flask_bcrypt
 pymongo
-python-3.12
+python
