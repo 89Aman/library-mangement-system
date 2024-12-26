@@ -1,8 +1,11 @@
+import os
+import pandas as pd
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
 from datetime import datetime
 from bson.objectid import ObjectId  # For working with MongoDB ObjectIds
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = 'admin420'  # Replace with a strong secret key
@@ -57,6 +60,48 @@ def add_book():
         return render_template('dashboard.html')
 
     return render_template('add_book.html')
+
+# Add CSV Route (Protected)
+@app.route('/upload_books_csv', methods=['GET', 'POST'])
+def upload_books_csv():
+    if not is_logged_in():
+        flash('You must be logged in to upload books via CSV.', 'warning')
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        file = request.files['csv_file']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            filepath = os.path.join('uploads', filename)
+            file.save(filepath)
+
+            # Read the CSV into a DataFrame
+            df = pd.read_csv(filepath)
+
+            # Iterate through the rows and insert them into the database
+            for index, row in df.iterrows():
+                new_book = {
+                    'title': row['title'],
+                    'author': row['author'],
+                    'genre': row['genre'],
+                    'isbn': row['isbn'],
+                    'year': row['year'],
+                    'publisher': row['publisher'],
+                    'available': True  # Assuming all books are available by default
+                }
+                books_collection.insert_one(new_book)
+
+            flash('Books uploaded successfully!', 'success')
+            return redirect(url_for('dashboard'))
+
+        else:
+            flash('Invalid file format. Please upload a CSV file.', 'danger')
+
+    return render_template('upload_books_csv.html')
+
+# Helper function to check file type (CSV)
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() == 'csv'
 
 # Borrow Book Route (Protected)
 @app.route('/borrow/<book_id>', methods=['POST'])
@@ -203,7 +248,6 @@ def register():
         return redirect(url_for('login'))
 
     return render_template('register.html')
-    
 
 if __name__ == "__main__":
     app.run(debug=False)
