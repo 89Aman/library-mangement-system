@@ -2,3 +2,4 @@ Flask
 flask-pymongo
 flask_bcrypt
 pymongo
+python-3.12
