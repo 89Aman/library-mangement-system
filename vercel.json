@@ -1,10 +1,5 @@
 {
   "version": 2,
-  "scripts":[
-    {
-      "start": "gunicorn app:app"
-    }
-  ],
   "builds": [
     {
       "src": "app.py",
