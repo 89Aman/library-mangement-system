@@ -3,7 +3,6 @@ gunicorn
 flask-pymongo
 flask_bcrypt
 pymongo
-python
 anyio==4.7.0
 argon2-cffi==23.1.0
 argon2-cffi-bindings==21.2.0
