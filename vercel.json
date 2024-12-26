@@ -1,5 +1,20 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "index" }
+  "version": 2,
+  "scripts":[
+    {
+      "start": "gunicorn app:app"
+    }
+  ],
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app.py"
+    }
   ]
 }
