@@ -185,7 +185,7 @@ def dashboard():
         if book:
             books.append(book)
 
-    return render_template('dashboard.html', books=books)
+    return render_template('after-login.html', books=books)
 
 # Login Route (as before)
 @app.route('/login', methods=['GET', 'POST'])
