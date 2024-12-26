@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="min-h-screen bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto flex items-center justify-between px-4 py-4">
+            <div class="text-xl font-bold text-gray-800">Library System</div>
+            <ul class="flex space-x-6 text-gray-600">
+                <li>
+                    <a href="/register" class="hover:text-gray-800 transition duration-200">Register</a>
+                </li>
+                <li>
+                    <a href="/login" class="hover:text-gray-800 transition duration-200">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="flex flex-col items-center justify-center py-20">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold text-gray-800 mb-6">Welcome to the Library Management System</h1>
+            <p class="text-lg text-gray-600 mb-6">Explore, borrow, and manage your favorite books effortlessly.</p>
+            <div class="flex space-x-4">
+                <a href="/register" class="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg shadow hover:bg-green-600 transition duration-200">
+                    Get Started
+                </a>
+                <a href="/login" class="px-6 py-3 bg-gray-200 text-gray-800 font-semibold rounded-lg shadow hover:bg-gray-300 transition duration-200">
+                    Login
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="container mx-auto py-16 px-4">
+        <h2 class="text-3xl font-bold text-gray-800 text-center mb-10">Why Choose Our Library System?</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="p-6 bg-white rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Wide Collection of Books</h3>
+                <p class="text-gray-600">Discover a vast collection of books from various genres and authors.</p>
+            </div>
+            <div class="p-6 bg-white rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">User-Friendly Platform</h3>
+                <p class="text-gray-600">Manage your borrowed books and account easily with our intuitive interface.</p>
+            </div>
+            <div class="p-6 bg-white rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Seamless Borrowing</h3>
+                <p class="text-gray-600">Borrow and return books with just a few clicks from anywhere.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
