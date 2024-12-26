@@ -1,4 +1,5 @@
-Flask 
+Flask
+gunicorn
 flask-pymongo
 flask_bcrypt
 pymongo
